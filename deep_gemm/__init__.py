@@ -133,7 +133,6 @@ deep_gemm_cpp.init(
 #     # K-Grouped
 #     k_grouped_fp8_gemm_nt_contiguous,
 #     k_grouped_fp8_gemm_tn_contiguous,
-#     k_grouped_bf16_gemm_tn_contiguous,
 
 #     # a8w4 M-Grouped NN
 #     m_grouped_fp8_fp4_gemm_nn_contiguous,
@@ -150,9 +149,11 @@ def unimplemented(*args, **kwargs):
 # API names for kernels not yet ported to the PPU build -> unimplemented
 k_grouped_fp8_gemm_nt_contiguous = unimplemented
 k_grouped_fp8_gemm_tn_contiguous = unimplemented
-k_grouped_bf16_gemm_tn_contiguous = unimplemented
 m_grouped_fp8_gemm_nn_contiguous = unimplemented
 fp8_gemm_nt_skip_head_mid = unimplemented
+
+# Native PPU1.5 K-grouped BF16 TN with optional FP32 output accumulation.
+from .k_grouped_gemm import k_grouped_bf16_gemm_tn_contiguous
 
 # Backward-compatible aliases
 get_col_major_tma_aligned_tensor = get_mn_major_tma_aligned_tensor
